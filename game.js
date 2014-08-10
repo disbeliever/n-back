@@ -46,13 +46,13 @@ function init() {
         if (i_vals[0] == rand_i && j_vals[0] == rand_j)
         {
           correct++;
-          document.getElementById("correct").innerHTML = "Правильно: " + correct;
+          document.getElementById("correct").innerHTML = correct;
           //console.log("correct");
         }
         else
         {
           wrong++;
-          document.getElementById("wrong").innerHTML = "Неправильно: " + wrong;
+          document.getElementById("wrong").innerHTML = wrong;
           //console.log("wrong");
         }
       }
