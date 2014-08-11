@@ -21,8 +21,10 @@ function init() {
 
     i_vals = Array();
     j_vals = Array();
+    key_pressed = false;
     function drawAndClear()
     {
+      key_pressed = false;
       rand_i = Math.floor((Math.random() * 3));
       rand_j = Math.floor((Math.random() * 3));
       i_vals.push(rand_i);
@@ -33,7 +35,13 @@ function init() {
         j_vals.shift();
       }
       ctx.drawImage(bgImage, 64, 0, 64, 64, rand_i*64, rand_j*64, 64, 64);
-      setTimeout(function() { ctx.drawImage(bgImage, 0, 0, 64, 64, rand_i*64, rand_j*64, 64, 64) }, showTime);
+      setTimeout(function() {
+        if (!key_pressed && i_vals.length > N && i_vals[0] == rand_i && j_vals[0] == rand_j)
+        {
+          wrong++;
+          document.getElementById("wrong").innerHTML = wrong;
+        }
+        ctx.drawImage(bgImage, 0, 0, 64, 64, rand_i*64, rand_j*64, 64, 64) }, showTime);
       //console.log(i_vals);
     }
 
@@ -41,6 +49,7 @@ function init() {
       //keysDown[e.keyCode] = true;
       if (e.keyCode == 32 && i_vals.length > N)
       {
+        key_pressed = true;
         //console.log(i_vals);
         //console.log(j_vals);
         if (i_vals[0] == rand_i && j_vals[0] == rand_j)
