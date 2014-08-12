@@ -1,25 +1,11 @@
 const showTime = 500;
 const N = 2;
+var ctx;
+var bgImage;
 
-function init() {
-  var ctx = document.getElementById("nback").getContext("2d");
-
-  var correct = 0;
-  var wrong = 0;
-  var bgReady = false;
-  var bgImage = new Image();
-  bgImage.src = "res/square.png";
-
-  bgImage.onload = function () {
-    bgReady = true;
-
-    for (i=0; i < 3; i++) {
-      for (j=0; j < 3; j++) {
-        ctx.drawImage(bgImage, 0, 0, 64, 64, i*64, j*64, 64, 64);
-      }
-    }
-
-    i_vals = Array();
+function startGame()
+{
+  i_vals = Array();
     j_vals = Array();
     key_pressed = false;
     function drawAndClear()
@@ -68,6 +54,28 @@ function init() {
     }, false);
 
     setInterval(drawAndClear, showTime * 3);
+}
+
+function init()
+{
+  ctx = document.getElementById("nback").getContext("2d");
+
+  var correct = 0;
+  var wrong = 0;
+  var bgReady = false;
+  bgImage = new Image();
+  bgImage.src = "res/square.png";
+
+  bgImage.onload = function () {
+    bgReady = true;
+
+    for (i=0; i < 3; i++) {
+      for (j=0; j < 3; j++) {
+        ctx.drawImage(bgImage, 0, 0, 64, 64, i*64, j*64, 64, 64);
+      }
+    }
+
+
   };
 
   //ctx.fillStyle = "rgb(0, 0, 0)";

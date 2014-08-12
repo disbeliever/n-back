@@ -4,13 +4,17 @@
   <head>
     <meta charset="utf-8"></meta>
     <title>N-back</title>
+    <link href="game.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="game.js"></script>
   </head>
 
   <body onload="init();">
-    <canvas id="nback" width="200" height="200"></canvas>
-    <p>Correct: <span id="correct">0</span></p>
-    <p>Wrong: <span id="wrong">0</span></p>
+    <div id="content">
+      <canvas id="nback" width="200" height="200"></canvas>
+      <p style="text-align:center"><span class="button" onclick="startGame();">Start</span></p>
+      <p style="text-align:center">Correct: <span id="correct">0</span></p>
+      <p style="text-align:center">Wrong: <span id="wrong">0</span></p>
+    </div>
   </body>
 
 </html>
