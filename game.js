@@ -3,13 +3,13 @@ const N = 2;
 var ctx;
 var bgImage;
 var started = false;
+var set_to;
+var set_int;
 
 function startGame()
 {
   var correct = 0;
   var wrong = 0;
-  var set_to;
-  var set_int;
   if (started)
   {
     started = false;
