@@ -12,17 +12,22 @@ function startGame()
   var wrong = 0;
   if (started)
   {
-    started = false;
-    document.getElementById("startButton").innerHTML = "Start";
-    removeEventListener("keydown");
-    clearInterval(set_int);
-    clearTimeout(set_to);
+    stopGame();
     return;
   }
   else 
   {
     started = true;
     document.getElementById("startButton").innerHTML = "Stop";
+  }
+
+  function stopGame()
+  {
+    started = false;
+    document.getElementById("startButton").innerHTML = "Start";
+    removeEventListener("keydown");
+    clearInterval(set_int);
+    clearTimeout(set_to);
   }
 
 
@@ -61,6 +66,10 @@ function startGame()
       if (i_vals[0] == rand_i && j_vals[0] == rand_j)
       {
         correct++;
+        if (correct == 10)
+        {
+          stopGame();
+        }
         document.getElementById("correct").innerHTML = correct;
         //console.log("correct");
       }
