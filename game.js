@@ -1,5 +1,5 @@
-const showTime = 500;
-const N = 2;
+const showTime = 600;
+var N = 2;
 var ctx;
 var bgImage;
 var started = false;
@@ -30,6 +30,13 @@ function startGame()
     clearTimeout(set_to);
   }
 
+  function resetCounters()
+  {
+    correct = 0;
+    wrong = 0;
+    document.getElementById("correct").innerHTML = correct;
+    document.getElementById("wrong").innerHTML = wrong;
+  }
 
   i_vals = Array();
   j_vals = Array();
@@ -55,32 +62,33 @@ function startGame()
         document.getElementById("wrong").innerHTML = wrong;
       }
       ctx.drawImage(bgImage, 0, 0, 64, 64, rand_i*64, rand_j*64, 64, 64) }, showTime);
-    //console.log(i_vals);
   }
 
-  addEventListener("keydown", function (e) {
-    //keysDown[e.keyCode] = true;
+  function keyHandler(e) {
     if (e.keyCode == 32 && i_vals.length > N && !key_pressed)
     {
       key_pressed = true;
       if (i_vals[0] == rand_i && j_vals[0] == rand_j)
       {
         correct++;
-        if (correct == 10)
+        if (correct >= 5*N)
         {
           stopGame();
+          resetCounters();
+          N++;
+          document.getElementById("N").innerHTML = N;
         }
         document.getElementById("correct").innerHTML = correct;
-        //console.log("correct");
       }
       else
       {
         wrong++;
         document.getElementById("wrong").innerHTML = wrong;
-        //console.log("wrong");
       }
     }
-  }, false);
+  }
+
+  addEventListener("keydown", keyHandler, false);
 
   set_int = setInterval(drawAndClear, showTime * 3);
 }
